@@ -47,8 +47,8 @@ resource "aws_lb_target_group" "target_group" {
 
   health_check {
     interval = 30
-    path     = "/health"
-    port     = 8080
+    path     = "actuator/health"
+    port     = 30080
     protocol = "HTTP"
     timeout  = 5
     healthy_threshold   = 2
@@ -56,11 +56,35 @@ resource "aws_lb_target_group" "target_group" {
   }
 }
 
-# Listener para o Load Balancer
-resource "aws_lb_listener" "listener" {
+# Listener para a porta 8080
+resource "aws_lb_listener" "listener_8080" {
   load_balancer_arn = aws_lb.internal_nlb.arn
   port              = "8080"
   protocol          = "TCP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target_group.arn
+  }
+}
+
+# Listener para a porta 80 (HTTP)
+resource "aws_lb_listener" "listener_80" {
+  load_balancer_arn = aws_lb.internal_nlb.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target_group.arn
+  }
+}
+
+# Listener para a porta 443 (HTTPS)
+resource "aws_lb_listener" "listener_443" {
+  load_balancer_arn = aws_lb.internal_nlb.arn
+  port              = "443"
+  protocol          = "HTTPS"
 
   default_action {
     type             = "forward"
