@@ -23,7 +23,7 @@ resource "aws_security_group" "eks_sg" {
 }
 
 resource "aws_security_group_rule" "allow_eks_30090" {
-  description       = 'allow ingress 30080 in nodes of balancer'
+  description       = "allow ingress 30080 in nodes of balancer"
   type              = "ingress"
   from_port         = 30080
   to_port           = 30080
