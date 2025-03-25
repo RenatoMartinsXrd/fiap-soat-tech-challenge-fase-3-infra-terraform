@@ -26,7 +26,7 @@ resource "aws_security_group_rule" "allow_eks_30090" {
   type              = "ingress"
   from_port         = 30080
   to_port           = 30080
-  protocol         = "tcp"
+  protocol         = "TCP"
   security_group_id = aws_security_group.eks_sg.id
   source_security_group_id = aws_security_group.sg.id
 }
