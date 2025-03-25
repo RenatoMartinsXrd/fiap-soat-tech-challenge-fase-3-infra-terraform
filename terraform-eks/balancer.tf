@@ -81,7 +81,7 @@ resource "aws_lb_target_group" "target_group" {
 resource "aws_lb_listener" "listener_8080" {
   load_balancer_arn = aws_lb.internal_nlb.arn
   port              = "8080"
-  protocol          = "TCP"
+  protocol          = "tcp"
 
   default_action {
     type             = "forward"
@@ -93,7 +93,7 @@ resource "aws_lb_listener" "listener_8080" {
 resource "aws_lb_listener" "listener_80" {
   load_balancer_arn = aws_lb.internal_nlb.arn
   port              = "80"
-  protocol          = "HTTP"
+  protocol          = "tcp"
 
   default_action {
     type             = "forward"
@@ -105,7 +105,7 @@ resource "aws_lb_listener" "listener_80" {
 resource "aws_lb_listener" "listener_443" {
   load_balancer_arn = aws_lb.internal_nlb.arn
   port              = "443"
-  protocol          = "HTTPS"
+  protocol          = "tcp"
 
   default_action {
     type             = "forward"
