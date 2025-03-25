@@ -7,28 +7,28 @@ resource "aws_security_group" "sg" {
   ingress {
     from_port   = 80
     to_port     = 80
-    protocol    = "tcp"
+    protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]  # Permite tráfego na porta 80 de qualquer IP
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
-    protocol    = "tcp"
+    protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]  # Permite tráfego na porta 443 de qualquer IP
   }
 
   ingress {
     from_port   = 8080
     to_port     = 8080
-    protocol    = "tcp"
+    protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]  # Permite tráfego na porta 8080 de qualquer IP
   }
 
   ingress {
     from_port   = 30080
     to_port     = 30080
-    protocol    = "tcp"
+    protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]  # Permite tráfego na porta 30080 de qualquer IP
   }
 
@@ -81,7 +81,7 @@ resource "aws_lb_target_group" "target_group" {
 resource "aws_lb_listener" "listener_8080" {
   load_balancer_arn = aws_lb.internal_nlb.arn
   port              = "8080"
-  protocol          = "tcp"
+  protocol          = "TCP"
 
   default_action {
     type             = "forward"
@@ -93,7 +93,7 @@ resource "aws_lb_listener" "listener_8080" {
 resource "aws_lb_listener" "listener_80" {
   load_balancer_arn = aws_lb.internal_nlb.arn
   port              = "80"
-  protocol          = "tcp"
+  protocol          = "TCP"
 
   default_action {
     type             = "forward"
@@ -105,7 +105,7 @@ resource "aws_lb_listener" "listener_80" {
 resource "aws_lb_listener" "listener_443" {
   load_balancer_arn = aws_lb.internal_nlb.arn
   port              = "443"
-  protocol          = "tcp"
+  protocol          = "TCP"
 
   default_action {
     type             = "forward"
